@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pendaftaran Anggota Ekstrakurikuler</title>
+
+  <!-- Font (butuh internet; kalau offline otomatis pakai font bawaan) -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Hiasan latar belakang -->
+  <div class="blob blob-1" aria-hidden="true"></div>
+  <div class="blob blob-2" aria-hidden="true"></div>
+
+  <main class="wrap">
+
+    <!-- ===== BAGIAN KIRI: JUDUL & DAFTAR EKSKUL ===== -->
+    <section class="hero">
+      <div class="logo" aria-hidden="true">
+        
+        <img src="logo.png" width="45" height="45" viewBox="0 0 24 24" fill="currentColor" >
+          
+       
+      </div>
+
+      <span class="pill">✨ Pendaftaran dibuka</span>
+      <h1>Pendaftaran<br><span class="grad">Anggota Ekstrakurikuler</span></h1>
+      <p>Bergabunglah dan kembangkan potensi diri bersama ekstrakurikuler favoritmu!</p>
+
+      <!-- Tombol ekskul diisi otomatis oleh script.js -->
+      <div class="chips" id="chips" aria-label="Daftar ekstrakurikuler"></div>
+
+      <!-- Ilustrasi buku & tanaman -->
+      <div class="illu-wrap" aria-hidden="true">
+        <span class="dots"></span>
+        <svg class="illu" viewBox="0 0 300 200">
+          <ellipse cx="150" cy="180" rx="130" ry="12" fill="#2563eb" opacity=".12"/>
+          <rect x="30" y="140" width="150" height="30" rx="5" fill="#2563eb"/>
+          <rect x="20" y="108" width="160" height="30" rx="5" fill="#64748b"/>
+          <rect x="40" y="76" width="140" height="30" rx="5" fill="#3b82f6"/>
+          <rect x="195" y="130" width="60" height="42" rx="6" fill="#1e40af"/>
+          <path d="M225 130c-30-10-35-50-20-80 25 15 30 55 20 80z" fill="#0d9488"/>
+          <path d="M225 130c25-5 40-35 35-60-25 8-40 35-35 60z" fill="#14b8a6"/>
+        </svg>
+        <span class="float f1">⚽</span>
+        <span class="float f2">🎵</span>
+        <span class="float f3">🔬</span>
+      </div>
+    </section>
+
+    <!-- ===== BAGIAN KANAN: FORMULIR ===== -->
+    <section class="card" aria-labelledby="judul-form">
+      <div class="top">
+        <div>
+          <h2 id="judul-form">Formulir Pendaftaran</h2>
+          <p class="sub">Isi data diri Anda dengan lengkap dan benar.</p>
+        </div>
+        <button class="theme" id="theme" type="button" aria-label="Ganti tema terang/gelap">🌓</button>
+      </div>
+
+      <div class="prog" aria-hidden="true"><b id="bar"></b></div>
+
+      <div id="formbox">
+        <div id="form" novalidate>
+
+          <div class="f" data-f="nama">
+            <label for="nama">Nama Lengkap</label>
+            <div class="in">
+              <input id="nama" autocomplete="name" placeholder="Masukkan nama lengkap">
+              <span class="st"></span>
+            </div>
+            <div class="msg"></div>
+          </div>
+
+          <div class="f" data-f="email">
+            <label for="email">Email</label>
+            <div class="in">
+              <input id="email" type="email" autocomplete="email" placeholder="contoh@email.com">
+              <span class="st"></span>
+            </div>
+            <div class="msg"></div>
+          </div>
+
+          <div class="f" data-f="pw">
+            <label for="pw">Password (angka saja)</label>
+            <div class="in pw">
+              <input id="pw" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="20" autocomplete="new-password" placeholder="Minimal 8 angka">
+              <button class="eye" type="button" data-eye="pw" aria-label="Tampilkan password">👁</button>
+              <span class="st"></span>
+            </div>
+            <div class="meter" id="meter"><i></i><i></i><i></i><i></i></div>
+            <div class="msg"></div>
+          </div>
+
+          <div class="f" data-f="pw2">
+            <label for="pw2">Konfirmasi Password</label>
+            <div class="in pw">
+              <input id="pw2" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="20" autocomplete="new-password" placeholder="Ulangi password angka">
+              <button class="eye" type="button" data-eye="pw2" aria-label="Tampilkan password">👁</button>
+              <span class="st"></span>
+            </div>
+            <div class="msg"></div>
+          </div>
+
+          <div class="f" data-f="ekskul">
+            <label for="ekskul">Pilih Ekstrakurikuler</label>
+            <div class="in">
+              <select id="ekskul"><option value="">-- Pilih Ekstrakurikuler --</option></select>
+              <span class="st"></span>
+            </div>
+            <div class="info" id="info"></div>
+            <div class="msg"></div>
+          </div>
+
+          <button class="btn" id="go" type="button"><span>✈ Daftar</span></button>
+        </div>
+      </div>
+
+      <!-- Tampilan setelah berhasil daftar -->
+      <div class="ok" id="ok" role="status">
+        <div class="tick">✔</div>
+        <h2>Pendaftaran Berhasil!</h2>
+        <p class="sub">Terima kasih telah mendaftar. Silakan tunggu konfirmasi dari pihak sekolah.</p>
+        <div class="sum" id="sum"></div>
+        <button class="btn" id="again" type="button">Daftarkan siswa lain</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Notifikasi kecil di atas -->
+  <div class="toast" id="toast" role="alert"></div>
+
+  <!-- ===== CHATBOT ===== -->
+  <div class="cb">
+    <div class="panel" id="panel" role="dialog" aria-label="Chatbot bantuan">
+      <div class="ph">
+        <div>🤖 Asisten Ekskul<small>Tanya seputar pendaftaran</small></div>
+        <button id="x" type="button" aria-label="Tutup">✕</button>
+      </div>
+      <div class="log" id="log" aria-live="polite"></div>
+      <div class="qs" id="qs"></div>
+      <div class="cf">
+        <input id="q" placeholder="Tulis pertanyaan..." autocomplete="off">
+        <button id="send" type="button">Kirim</button>
+      </div>
+    </div>
+    <button class="fab" id="fab" type="button" aria-label="Buka chatbot">💬</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
